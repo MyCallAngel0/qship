@@ -3,6 +3,8 @@ package fiksiki.demo.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.time.LocalDate;
 
 @Data
@@ -15,6 +17,16 @@ public class UserDetails {
 
     @Column(name="date_of_birth")
     private LocalDate dob;
+
+    @Min(value = 1)
+    @Max(value = 100)
+    private Integer difficulty;
+
+    private Integer money;
+
+    private Long points;
+
+    private String skins;
 
     @Enumerated
     @Column
