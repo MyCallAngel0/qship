@@ -37,7 +37,7 @@ public class AuthUserService {
         System.out.println("Here");
         if (authentication.isAuthenticated()) {
             System.out.println("There");
-            return new ResponseEntity<>(jwtService.generateToken(user.getUsername()), HttpStatusCode.valueOf(200));
+            return new ResponseEntity<>("{ \"jwt\": \"" + jwtService.generateToken(user.getUsername()) + "\" }", HttpStatusCode.valueOf(200));
         } else {
             System.out.println("Everywhere");
             return new ResponseEntity<>("Authorization failed", HttpStatusCode.valueOf(401));
