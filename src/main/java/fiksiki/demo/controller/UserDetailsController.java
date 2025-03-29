@@ -43,6 +43,7 @@ public class UserDetailsController {
         List<Map<String, ?>> responseList = new ArrayList<>();
         users.forEach(user -> {
             Map<String, Object> responseMap = new HashMap<>();
+            responseMap.put("id", user.getId());
             responseMap.put("username", user.getAuthUser().getUsername());
             responseMap.put("points", user.getPoints());
             responseMap.put("money", user.getMoney());
