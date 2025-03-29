@@ -7,11 +7,11 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.time.LocalDate;
 
-@Data
 @Entity
-@Table
+@Table(name="user_info")
 public class UserDetails {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "user_id")
     private Long id;
 
@@ -22,8 +22,10 @@ public class UserDetails {
     @Max(value = 100)
     private Integer difficulty;
 
+    @Min(value = 0)
     private Integer money;
 
+    @Min(value = 0)
     private Long points;
 
     private String skins;
@@ -37,8 +39,80 @@ public class UserDetails {
     private Language language;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="auth_user_id")
-    private AuthUser auth_user;
+    @JoinColumn(name="auth_user", nullable = false)
+    private AuthUser authUser;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDate getDob() {
+        return dob;
+    }
+
+    public void setDob(LocalDate dob) {
+        this.dob = dob;
+    }
+
+    public Integer getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Integer difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public Integer getMoney() {
+        return money;
+    }
+
+    public void setMoney(Integer money) {
+        this.money = money;
+    }
+
+    public Long getPoints() {
+        return points;
+    }
+
+    public void setPoints(Long points) {
+        this.points = points;
+    }
+
+    public String getSkins() {
+        return skins;
+    }
+
+    public void setSkins(String skins) {
+        this.skins = skins;
+    }
+
+    public Nationality getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(Nationality nationality) {
+        this.nationality = nationality;
+    }
+
+    public Language getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
+
+    public AuthUser getAuthUser() {
+        return authUser;
+    }
+
+    public void setAuthUser(AuthUser authUser) {
+        this.authUser = authUser;
+    }
 
     public enum Nationality {
         ROMANIAN,
@@ -49,7 +123,7 @@ public class UserDetails {
         FRENCH,
         SPANISH,
         CHINA,
-        JAPAN,
+        MOLDOVAN,
         TURK,
 
     }

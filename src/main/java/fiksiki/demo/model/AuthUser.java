@@ -1,9 +1,6 @@
 package fiksiki.demo.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 
 @Getter
@@ -11,11 +8,16 @@ import lombok.Getter;
 @Table(name="auth_user")
 public class AuthUser {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="auth_user_id")
-    private int id;
+    private Long id;
     @Column(unique = true)
     private String username;
     private String password;
+
+    public Long getId() {
+        return id;
+    }
 
     public String getUsername() {
         return username;
